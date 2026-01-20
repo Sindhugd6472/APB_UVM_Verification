@@ -27,6 +27,7 @@ Click "Run" to see the testbench in action with waveform generation!
 
 ## Repository Structure
 
+```
 APB_UVM_Verification/
 ├── rtl/
 │ └── apb_slave.sv # APB slave design (DUT)
@@ -45,6 +46,7 @@ APB_UVM_Verification/
 │ └── top.sv # Top module
 ├── run.sh # Compilation script
 └── README.md
+```
 
 ## APB Protocol Details
 
@@ -89,47 +91,52 @@ Requirements: ModelSim/Questa or compatible simulator with UVM support
 ```bash
 chmod +x run.sh
 ./run.sh
+```
+## View waveforms:
+```bash
 gtkwave apb_test.vcd
 ```
-UVM Components
-Transaction: Defines APB transfer properties (read/write, address, data)
 
-Driver: Drives APB protocol timing on the interface
+## UVM Components
 
-Monitor: Observes bus activity and collects transactions
+- **Transaction** : Defines APB transfer properties (read/write, address, data)
 
-Sequencer: Generates randomized test sequences
+- **Driver** : Drives APB protocol timing on the interface
 
-Scoreboard: Validates read/write consistency using internal memory model
+- **Monitor** : Observes bus activity and collects transactions
 
-Agent: Encapsulates driver, monitor, and sequencer
+- **Sequencer** : Generates randomized test sequences
 
-Environment: Top-level testbench container
+- **Scoreboard** : Validates read/write consistency using internal memory model
 
-Tests: Various test scenarios (write, read, random)
+- **Agent** : Encapsulates driver, monitor, and sequencer
 
-Skills Demonstrated
-UVM methodology and architecture
+- **Environment** : Top-level testbench container
 
-SystemVerilog for verification
+- **Tests** : Various test scenarios (write, read, random)
 
-Protocol verification (AMBA APB)
+## Skills Demonstrated
 
-Constrained random verification
+✅ UVM methodology and architecture
 
-Scoreboard-based checking
+✅ SystemVerilog for verification
 
-Clocking blocks and interfaces
+✅ Protocol verification (AMBA APB)
 
-Functional coverage concepts
+✅ Constrained random verification
 
-Transaction-level modeling
+✅ Scoreboard-based checking
 
-Related Projects
-AXI4-Lite UVM Verification - More complex AMBA protocol verification
+✅ Clocking blocks and interfaces
 
-Author
-Built as part of digital design verification portfolio for entry-level verification engineering roles.
+✅ Functional coverage concepts
 
-License
+✅ Transaction-level modeling
+
+## Related Projects
+
+- **[AXI4-Lite UVM Verification](https://github.com/Sindhugd6472/axi4-lite-uvm)** - More complex AMBA protocol verification
+
+## License
+
 This project is available for educational and portfolio purposes.
