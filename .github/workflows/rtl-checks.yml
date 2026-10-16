@@ -1,0 +1,13 @@
+name: RTL checks
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  rtl:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y iverilog
+      - run: |
+          iverilog -g2012 -s apb_rtl_tb -o /tmp/apb_sim rtl/apb_slave.sv tests/apb_rtl_tb.sv
+          vvp /tmp/apb_sim

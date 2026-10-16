@@ -15,6 +15,9 @@ class apb_driver extends uvm_driver #(apb_transaction);
   endfunction
   
   task run_phase(uvm_phase phase);
+    vif.psel = 0; vif.penable = 0; vif.pwrite = 0;
+    vif.paddr = 0; vif.pwdata = 0;
+    wait (vif.preset_n === 1);
     forever begin
       seq_item_port.get_next_item(req);
       drive_transaction(req);
@@ -44,6 +47,8 @@ class apb_driver extends uvm_driver #(apb_transaction);
     while(vif.driver_cb.pready == 0)
       @(vif.driver_cb);
     
+    trans.pslverr = vif.driver_cb.pslverr;
+
     // Capture read data if it's a read transaction
     if(!trans.pwrite)
       trans.prdata = vif.driver_cb.prdata;
