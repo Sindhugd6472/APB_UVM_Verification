@@ -1,4 +1,6 @@
 #!/bin/bash
+set -euo pipefail
+: "${UVM_HOME:?Set UVM_HOME to your UVM source checkout}"
 
 # Clean previous build
 rm -rf work
@@ -15,8 +17,8 @@ vlog -sv rtl/apb_slave.sv
 
 # Compile Testbench
 echo "Compiling Testbench..."
-vlog -sv +incdir+$UVM_HOME/src \
-         $UVM_HOME/src/uvm_pkg.sv \
+vlog -sv +incdir+tb +incdir+"$UVM_HOME/src" \
+         "$UVM_HOME/src/uvm_pkg.sv" \
          tb/apb_interface.sv \
          tb/apb_pkg.sv \
          tb/top.sv

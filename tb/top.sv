@@ -35,7 +35,7 @@ module top;
   // Reset generation
   initial begin
     preset_n = 0;
-    #20;
+    repeat (2) @(negedge pclk);
     preset_n = 1;
   end
   
@@ -44,7 +44,7 @@ module top;
     uvm_config_db#(virtual apb_interface)::set(null, "*", "vif", intf);
     
     // Run the test (change test name here to run different tests)
-    run_test("apb_random_test");
+    run_test("apb_random_test"); // +UVM_TESTNAME overrides this default
   end
   
   // Waveform dump
@@ -53,5 +53,6 @@ module top;
     $dumpvars(0, top);
   end
   
+  initial begin #1000000; $fatal(1, "APB UVM timeout"); end
 endmodule
 

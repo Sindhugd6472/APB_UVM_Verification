@@ -140,3 +140,14 @@ gtkwave apb_test.vcd
 ## License
 
 This project is available for educational and portfolio purposes.
+
+## Local validation
+
+The RTL-only smoke check needs Icarus Verilog:
+
+```sh
+iverilog -g2012 -s apb_rtl_tb -o /tmp/apb_sim rtl/apb_slave.sv tests/apb_rtl_tb.sv
+vvp /tmp/apb_sim
+```
+
+The example slave uses addresses 0..255 as memory indices. This test checks writes and readback with completion timing. It does not replace the UVM suite. For Questa, set UVM_HOME and run `bash run.sh`; the script stops on tool/compile failures and includes the testbench source directory. The UVM driver initializes controls, waits for reset release and captures PSLVERR. Full UVM simulation needs a compatible simulator.
