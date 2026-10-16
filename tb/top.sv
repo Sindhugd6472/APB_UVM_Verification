@@ -44,7 +44,7 @@ module top;
     uvm_config_db#(virtual apb_interface)::set(null, "*", "vif", intf);
     
     // Run the test (change test name here to run different tests)
-    run_test();
+    run_test("apb_random_test"); // +UVM_TESTNAME overrides this default
   end
   
   // Waveform dump
